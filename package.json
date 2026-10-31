@@ -5,13 +5,18 @@
   "type": "module",
   "license": "MIT",
   "author": "xwtaidev",
+  "repository": { "type": "git", "url": "git+https://github.com/xwtaidev/dsh-inkblade-theme.git" },
+  "homepage": "https://github.com/xwtaidev/dsh-inkblade-theme#readme",
+  "bugs": { "url": "https://github.com/xwtaidev/dsh-inkblade-theme/issues" },
+  "keywords": ["deepseek-harness", "dsh", "dsh-plugin", "theme", "obsidian", "inkblade"],
+  "publishConfig": { "access": "public" },
   "exports": {
     ".": "./index.js",
     "./client": "./client.js",
     "./locale/*.json": "./locale/*.json",
     "./icon": "./icon.svg"
   },
-  "files": ["index.js", "client.js", "cordis.patch.yml", "locale/*.json", "icon.svg", "LICENSE", "README.md"],
+  "files": ["index.js", "client.js", "cordis.patch.yml", "locale/*.json", "icon.svg", "LICENSE", "README.md", "test/*.test.js"],
   "scripts": { "test": "node --test test/*.test.js" },
   "dsh": {
     "bundle": { "patch": "./cordis.patch.yml" },

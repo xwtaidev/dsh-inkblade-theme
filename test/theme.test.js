@@ -15,11 +15,17 @@ function load() {
 }
 
 test('package is a DSH bundle with matching client dependency', async () => {
+  assert.equal(manifest.name, '@xwtaidev/dsh-theme-inkblade');
+  assert.notEqual(manifest.private, true);
+  assert.equal(manifest.publishConfig.access, 'public');
+  assert.equal(manifest.repository.url, 'git+https://github.com/xwtaidev/dsh-inkblade-theme.git');
+  assert.ok(manifest.keywords.includes('dsh-plugin'));
+  assert.ok(manifest.files.includes('test/*.test.js'));
   assert.equal(manifest.dsh.bundle.patch, './cordis.patch.yml');
   assert.equal(manifest.dsh.client.platform, 'web');
   assert.equal(manifest.dsh.client.immediately, true);
   assert.ok(manifest.dsh.client.inject.includes('@deepseek-ai/dsh-client-ui-theme'));
-  assert.match(await readFile(new URL('cordis.patch.yml', root), 'utf8'), new RegExp(manifest.name));
+  assert.equal((await readFile(new URL('cordis.patch.yml', root), 'utf8')).trim(), `- insert:\n    - id: inkblade-theme\n      name: '${manifest.name}'`);
   for (const path of Object.values(manifest.exports).filter(p => !p.includes('*'))) await readFile(new URL(path, root));
 });
 
